@@ -53,7 +53,7 @@ public class SocketChannel extends Channel {
     @Override
     protected void idle(IdleEvent.Event e) {
         super.idle(e);
-        Log.e("lzh","idle:"+e.eventState);
+        Log.d("lzh","idle:"+e.eventState);
         if(e.eventState.equals(IdleEvent.Event.WRITE_IDLE)){
             Heart heart = new Heart(ActionConfig.HEARTACTION,"zdm");
             String heartJson = JsonCoder.formatToJson(heart)+"\r\n";

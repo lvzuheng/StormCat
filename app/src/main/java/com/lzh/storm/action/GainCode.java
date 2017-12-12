@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import dalvik.system.DexFile;
@@ -20,7 +22,7 @@ import dalvik.system.DexFile;
 public class GainCode {
 
 
-    public static Object FromCode(Context context, String code) {
+    public static Object getProtocolFromCode(Context context, String code) {
         //判断是不是注解
         String packageName = CodeAnnotation.class.getPackage().getName();    //获得当前包名
         Log.e("lzh", "packageName:" + packageName);
@@ -41,6 +43,27 @@ public class GainCode {
             e.printStackTrace();
         }
         return null;
+    }
+    public static Map<String,Protocol> getProtocol(Context context) {
+        //判断是不是注解
+        String packageName = CodeAnnotation.class.getPackage().getName();    //获得当前包名
+        Map<String,Protocol> protocolMap = new HashMap<>();
+        try {
+            List<Class> allClass = ClassUtils.getSpecifyClass(context,packageName,Protocol.class);//获得当前包以及子包下的所有协议类
+            for (int i = 0; i < allClass.size(); i++) {
+                if (allClass.get(i).isAnnotationPresent(CodeAnnotation.class)) {
+                    String value;
+                    if ((value = ((CodeAnnotation)allClass.get(i).getAnnotation(CodeAnnotation.class)).value()) != null) {
+                        Log.e("lzh","value:"+value);
+                        protocolMap.put(value, (Protocol) allClass.get(i).newInstance());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return protocolMap;
     }
 
 

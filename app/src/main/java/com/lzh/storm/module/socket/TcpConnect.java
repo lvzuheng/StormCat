@@ -77,14 +77,13 @@ public class TcpConnect implements Connection {
 
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        Log.e("lzh", "success：" + channel);
+                        Log.d("lzh", "success：" + channel);
                         channel.channelActive();
                         read();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("lzh", "error：" + e.getMessage());
                         channel.error(e);
                         release();
                     }
@@ -129,15 +128,14 @@ public class TcpConnect implements Connection {
 
                     @Override
                     public void onNext(byte[] bytes) {
-                        Log.e("lzh", "onNext:" + socket.isConnected());
+//                        Log.e("lzh", "onNext:" + socket.isConnected());
                         channel.read(bytes);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         try {
-
-                            Log.e("lzh", "onError:");
+//                            Log.e("lzh", "onError:");
                             channel.error(e);
                             disconnect();
 
@@ -158,7 +156,6 @@ public class TcpConnect implements Connection {
 
     @Override
     public synchronized boolean write(final byte[] b) {
-        Log.e("lzh", "write：");
         Observable.just(b).subscribeOn(Schedulers.io()).subscribe(new Observer<byte[]>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -167,7 +164,7 @@ public class TcpConnect implements Connection {
 
             @Override
             public void onNext(byte[] bytes) {
-                Log.e("lzh", "写出：" + bytes.length);
+                Log.d("lzh", "写出：" + bytes.length);
                 if (socket.isConnected() && bytes != null && bytes.length > 0) {
                     try {
                         outputStream.write(bytes);

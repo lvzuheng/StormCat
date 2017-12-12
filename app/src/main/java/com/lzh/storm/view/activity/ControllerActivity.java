@@ -16,6 +16,11 @@ import com.lzh.storm.action.ActionController;
 public abstract class ControllerActivity extends Activity{
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActionController.getInsatance().setControllerActivity(this);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {

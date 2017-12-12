@@ -61,7 +61,6 @@ public class LoadingActivity extends Activity {
         setContentView(R.layout.activity_loading);
         ButterKnife.bind(this);
         requestPermission();
-
     }
 
     private void CheckUpdate() {
@@ -109,7 +108,7 @@ public class LoadingActivity extends Activity {
 
                     @Override
                     public void onComplete() {
-
+                        finish();
                     }
                 });
     }

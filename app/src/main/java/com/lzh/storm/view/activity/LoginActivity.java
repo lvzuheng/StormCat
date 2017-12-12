@@ -3,6 +3,7 @@ package com.lzh.storm.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,7 +31,6 @@ public class LoginActivity extends ControllerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
     }
 
     @OnClick(R.id.main_btn)

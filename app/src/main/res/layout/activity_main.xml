@@ -2,17 +2,69 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/layouta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:text="主界面!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6">
+            <FrameLayout
+                android:id="@+id/main_fm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.lzh.storm.custom.view.SwapperButton
+                android:text="Main"
+                android:id="@+id/main_btn_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:swapper="MainFragment"
+                />
+
+            <com.lzh.storm.custom.view.SwapperButton
+                android:text="audio"
+                android:id="@+id/main_btn_audio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:swapper="AudioFragment"
+                app:firstDisplay="true"/>
+
+            <com.lzh.storm.custom.view.SwapperButton
+                android:text="map"
+                android:id="@+id/main_btn_map"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:swapper="MapFragment"
+                />
+
+            <com.lzh.storm.custom.view.SwapperButton
+                android:text="Setting"
+                android:id="@+id/main_btn_setting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:swapper="SettingFragment"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 
